@@ -16,11 +16,18 @@ public class User {
     private Long id;
     private String name;
     private Date age;
-    private String nick;
+    private String login;
     private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses = new ArrayList<>();
+
+    public User(){}
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
     /**
      * Add expense to user
@@ -41,7 +48,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", nick='" + nick + '\'' +
+                ", login='" + login + '\'' +
                 ", password='****'" +
                 '}';
     }
@@ -62,12 +69,12 @@ public class User {
         this.age = age;
     }
 
-    public String getNick() {
-        return nick;
+    public String getLogin() {
+        return login;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -103,7 +110,7 @@ public class User {
 
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (age != null ? !age.equals(user.age) : user.age != null) return false;
-        if (nick != null ? !nick.equals(user.nick) : user.nick != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
         return password != null ? password.equals(user.password) : user.password == null;
 
     }
@@ -112,7 +119,7 @@ public class User {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (nick != null ? nick.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }

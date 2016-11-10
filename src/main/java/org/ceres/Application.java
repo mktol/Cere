@@ -1,11 +1,13 @@
 package org.ceres;
 
 import org.ceres.entity.Expense;
+import org.ceres.entity.UserDetailsServiceImpl;
 import org.ceres.repoistory.ExpenseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Spring boot config
@@ -22,5 +24,10 @@ public class Application {
             repository.save(new Expense("title", "dessc", 200.0));
             repository.findAll().forEach(System.out::println);
         };
+    }
+
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+        return new UserDetailsServiceImpl();
     }
 }
